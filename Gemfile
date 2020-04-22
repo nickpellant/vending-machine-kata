@@ -5,6 +5,7 @@ ruby '2.7.1'
 source 'https://rubygems.org'
 
 gem 'dry-system', '~> 0.17.0'
+gem 'rom', '~> 5.2', '>= 5.2.2'
 gem 'rubocop', '~> 0.82.0', require: false
 
 group :development, :test do
