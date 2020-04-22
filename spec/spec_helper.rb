@@ -4,6 +4,7 @@ ENV['APP_ENV'] ||= 'test'
 
 require_relative '../run'
 
+require_relative 'support/app_stubs'
 require_relative 'support/database_cleaner'
 require_relative 'support/factory'
 

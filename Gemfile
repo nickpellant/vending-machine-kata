@@ -4,7 +4,11 @@ ruby '2.7.1'
 
 source 'https://rubygems.org'
 
+gem 'dry-initializer', '~> 3.0', '>= 3.0.3'
 gem 'dry-system', '~> 0.17.0'
+gem 'dry-types', '~> 1.4'
+gem 'dry-validation', '~> 1.5'
+gem 'logger', '~> 1.4', '>= 1.4.2'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'rake', '~> 13.0', '>= 13.0.1'
 gem 'rom', '~> 5.2', '>= 5.2.2'

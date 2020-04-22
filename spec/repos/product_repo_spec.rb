@@ -15,4 +15,35 @@ RSpec.describe Repos::ProductRepo do
       expect(all).to eql(all_products)
     end
   end
+
+  describe '#count' do
+    subject(:count) { product_repo.count }
+
+    context 'when products exist' do
+      let!(:products) { [Factory[:product]] }
+
+      it { is_expected.to be(1) }
+    end
+
+    context 'when no products exist' do
+      it { is_expected.to be(0) }
+    end
+  end
+
+  describe '#exists?' do
+    subject(:exists?) { product_repo.exists?(params) }
+
+    context 'when product found' do
+      let(:product) { Factory[:product] }
+      let(:params) { { name: product.name } }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when product not found' do
+      let(:params) { { name: 'Name' } }
+
+      it { is_expected.to be(false) }
+    end
+  end
 end
