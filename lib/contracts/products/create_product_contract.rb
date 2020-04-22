@@ -15,6 +15,10 @@ module Contracts
       rule(:price) do
         key.failure('must be greater than or equal to zero') if value.negative?
       end
+
+      rule(:quantity_in_stock) do
+        key.failure('must be greater than or equal to zero') if value.negative?
+      end
     end
   end
 end

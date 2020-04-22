@@ -34,6 +34,12 @@ RSpec.describe Contracts::Products::CreateProductContract do
   describe '#errors[:quantity_in_stock]' do
     it_behaves_like 'a required integer schema value' do
       let(:value_key) { :quantity_in_stock }
+
+      context 'when value is less than zero' do
+        let(:params) { { value_key => -1 } }
+
+        it { is_expected.to eql(['must be greater than or equal to zero']) }
+      end
     end
   end
 end
