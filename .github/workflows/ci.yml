@@ -21,6 +21,7 @@ jobs:
 
   rspec:
     runs-on: ubuntu-latest
+    container: ruby:2.7.1-buster
     services:
       postgres:
         image: postgres
@@ -35,10 +36,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7
       - name: Install dependencies
         run: bundle install
       - name: RSpec
