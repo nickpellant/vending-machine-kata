@@ -12,3 +12,4 @@ class App < Dry::System::Container
 end
 
 App.start(:dotenv)
+App.start(:database)
