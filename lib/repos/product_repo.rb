@@ -8,5 +8,9 @@ module Repos
     def all
       products.to_a
     end
+
+    def count
+      products.count
+    end
   end
 end
