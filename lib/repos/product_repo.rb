@@ -12,5 +12,9 @@ module Repos
     def count
       products.count
     end
+
+    def exists?(params)
+      products.exist?(params)
+    end
   end
 end
