@@ -13,6 +13,7 @@ gem 'rubocop', '~> 0.82.0', require: false
 
 group :development, :test do
   gem 'byebug', '~> 11.1', '>= 11.1.2'
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.4'
   gem 'dotenv', '~> 2.7', '>= 2.7.5'
 end
 
