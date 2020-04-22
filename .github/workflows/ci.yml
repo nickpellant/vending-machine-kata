@@ -47,3 +47,4 @@ jobs:
         run: bundle exec rspec
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/vending_machine_kata_test
+          DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
