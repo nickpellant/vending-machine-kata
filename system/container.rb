@@ -10,3 +10,5 @@ class App < Dry::System::Container
 
   load_paths!('lib')
 end
+
+App.start(:dotenv)
