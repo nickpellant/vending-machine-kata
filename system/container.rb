@@ -12,4 +12,5 @@ class App < Dry::System::Container
 end
 
 App.start(:dotenv)
+App.start(:logger)
 App.start(:database)
