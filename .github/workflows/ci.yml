@@ -18,8 +18,20 @@ jobs:
         uses: reviewdog/action-rubocop@v1
         with:
           github_token: ${{ secrets. REVIEWDOG_GITHUB_TOKEN }}
+
   rspec:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: vending_machine_kata_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,3 +43,5 @@ jobs:
         run: bundle install
       - name: RSpec
         run: bundle exec rspec
+        env:
+          DATABASE_URL: postgres://postgres:postgres@postgres/vending_machine_kata_test
