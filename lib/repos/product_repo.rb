@@ -5,7 +5,7 @@ require_relative 'application_repo'
 module Repos
   # Convenience interface for product relations
   class ProductRepo < ApplicationRepo[:products]
-    commands(:create)
+    commands(:create, update: :by_pk)
 
     def all
       products.to_a
