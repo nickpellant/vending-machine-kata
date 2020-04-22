@@ -17,5 +17,6 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rom-factory', '~> 0.10.2'
   gem 'rspec', '~> 3.9'
 end
