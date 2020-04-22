@@ -127,6 +127,7 @@ DEPENDENCIES
   dotenv (~> 2.7, >= 2.7.5)
   dry-initializer (~> 3.0, >= 3.0.3)
   dry-system (~> 0.17.0)
+  dry-types (~> 1.4)
   pg (~> 1.2, >= 1.2.3)
   rake (~> 13.0, >= 13.0.1)
   rom (~> 5.2, >= 5.2.2)
