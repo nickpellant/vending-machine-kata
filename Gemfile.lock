@@ -125,6 +125,7 @@ DEPENDENCIES
   byebug (~> 11.1, >= 11.1.2)
   database_cleaner (~> 1.8, >= 1.8.4)
   dotenv (~> 2.7, >= 2.7.5)
+  dry-initializer (~> 3.0, >= 3.0.3)
   dry-system (~> 0.17.0)
   pg (~> 1.2, >= 1.2.3)
   rake (~> 13.0, >= 13.0.1)
