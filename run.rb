@@ -2,5 +2,3 @@
 
 require 'bundler/setup'
 require_relative 'system/container'
-
-puts 'Success'
