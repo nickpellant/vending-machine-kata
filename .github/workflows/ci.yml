@@ -12,8 +12,22 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: RuboCop
         uses: reviewdog/action-rubocop@v1
         with:
           github_token: ${{ secrets. REVIEWDOG_GITHUB_TOKEN }}
+  rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - name: Install dependencies
+        run: bundle install
+      - name: RSpec
+        run: bundle exec rspec
