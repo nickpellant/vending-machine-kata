@@ -12,7 +12,61 @@ RSpec.describe Commands::VendingMachine::StockProduct do
   let(:logger) { instance_spy(Logger) }
   before { App.stub('logger', logger) }
 
-  context 'when product data is valid' do
+  context 'when product found and adding stock to product' do
+    let!(:product) { Factory[:product] }
+
+    let(:name) { product.name }
+    let(:price) { product.price }
+    let(:quantity_to_stock) { 1 }
+    let(:new_quantity_in_stock) { product.quantity_in_stock + quantity_to_stock }
+
+    let(:log_product_stock_updated_message) do
+      "'#{name}' stock changed from #{product.quantity_in_stock} to #{new_quantity_in_stock}"
+    end
+
+    it 'updates the product quantity in stock' do
+      expect { call }.to(
+        change { App['repos.product_repo'].by_params(name: name, price: price).quantity_in_stock }
+        .from(product.quantity_in_stock)
+        .to(new_quantity_in_stock)
+      )
+    end
+
+    it 'logs that the product stock was updated' do
+      call
+
+      expect(logger).to have_received(:info).with(log_product_stock_updated_message)
+    end
+  end
+
+  context 'when product found and removing more stock than product has' do
+    let!(:product) { Factory[:product] }
+
+    let(:name) { product.name }
+    let(:price) { product.price }
+    let(:quantity_to_stock) { -(product.quantity_in_stock + product.quantity_in_stock + 1) }
+
+    let(:log_product_stock_update_failed_validation_message) do
+      "Attempting to update stock for '#{name}' led to a validation error"
+    end
+
+    it 'does not change the product quantity in stock' do
+      expect { call }.not_to(
+        change { App['repos.product_repo'].by_params(name: name, price: price).quantity_in_stock }
+        .from(product.quantity_in_stock)
+      )
+    end
+
+    it 'logs that the product stock update failed validation' do
+      call
+
+      expect(logger).to(
+        have_received(:error).with(log_product_stock_update_failed_validation_message)
+      )
+    end
+  end
+
+  context 'when product not found and data is valid' do
     let(:name) { Factory.structs[:product].name }
     let(:price) { Factory.structs[:product].price }
     let(:quantity_to_stock) { 1 }
@@ -42,7 +96,7 @@ RSpec.describe Commands::VendingMachine::StockProduct do
     end
   end
 
-  context 'when product data is invalid' do
+  context 'when product not found and data is invalid' do
     let(:name) { '' }
     let(:price) { -1.to_d }
     let(:quantity_to_stock) { 0 }

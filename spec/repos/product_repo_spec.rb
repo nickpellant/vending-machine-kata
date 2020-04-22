@@ -16,6 +16,25 @@ RSpec.describe Repos::ProductRepo do
     end
   end
 
+  describe '#by_params' do
+    subject(:by_params) { product_repo.by_params(params) }
+
+    context 'when product found' do
+      let(:product) { Factory[:product] }
+      let(:params) { { name: product.name } }
+
+      it 'is expected to return the product' do
+        expect(by_params).to eql(product)
+      end
+    end
+
+    context 'when product not found' do
+      let(:params) { { name: 'Name' } }
+
+      it { expect(by_params).to be_nil }
+    end
+  end
+
   describe '#count' do
     subject(:count) { product_repo.count }
 
