@@ -3,6 +3,7 @@
 App.boot(:database) do
   init do
     require 'rom'
+    require 'rom-repository'
     require 'rom-sql'
   end
 
