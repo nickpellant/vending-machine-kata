@@ -9,5 +9,9 @@ module Repos
     def count_by_denomination(denomination)
       coins.where(denomination: denomination).count
     end
+
+    def processing
+      coins.where(state: 'processing').to_a
+    end
   end
 end

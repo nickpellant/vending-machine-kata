@@ -24,4 +24,21 @@ RSpec.describe Repos::CoinRepo do
       it { is_expected.to be(0) }
     end
   end
+
+  describe '#processing' do
+    subject(:processing) { coin_repo.processing }
+
+    context 'when multiple coins exist' do
+      let!(:one_pence_coin_processing) { Factory[:coin, :one_pence, :processing] }
+      let!(:one_pence_coin_received) { Factory[:coin, :one_pence, :received] }
+
+      it 'returns only processing coins' do
+        is_expected.to eql([one_pence_coin_processing])
+      end
+    end
+
+    context 'when no coins exist' do
+      it { is_expected.to be_empty }
+    end
+  end
 end
