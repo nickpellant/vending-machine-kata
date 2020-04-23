@@ -43,7 +43,7 @@ RSpec.describe Services::Purchases::FindOrCreateActivePurchase do
 
     before do
       allow(purchase_repo).to receive(:active).and_return(nil)
-      allow(purchase_repo).to receive(:create).with(state: :active).and_return(new_purchase)
+      allow(purchase_repo).to receive(:create).with(state: 'active').and_return(new_purchase)
     end
 
     it 'queries for the active purchase' do
@@ -55,7 +55,7 @@ RSpec.describe Services::Purchases::FindOrCreateActivePurchase do
     it 'creates a new active purchase' do
       call
 
-      expect(purchase_repo).to have_received(:create).with(state: :active)
+      expect(purchase_repo).to have_received(:create).with(state: 'active')
     end
 
     it 'returns the active purchase' do

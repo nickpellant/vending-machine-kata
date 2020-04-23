@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'entities/product'
 require 'entities/purchase'
+require 'entities/product'
 require 'services/application_service'
 
 module Services

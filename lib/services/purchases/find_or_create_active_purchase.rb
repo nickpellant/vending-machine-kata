@@ -12,7 +12,7 @@ module Services
         purchase = purchase_repo.active
         return purchase if purchase
 
-        purchase_repo.create(state: :active)
+        purchase_repo.create(state: 'active')
       end
     end
   end
