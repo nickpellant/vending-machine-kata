@@ -6,6 +6,26 @@ require 'repos/purchase_repo'
 RSpec.describe Repos::PurchaseRepo do
   subject(:purchase_repo) { described_class.new }
 
+  describe '#by_id' do
+    subject(:by_id) { purchase_repo.by_id(purchase_id) }
+
+    context 'when product found' do
+      let(:product) { Factory[:product] }
+      let(:purchase) { Factory[:purchase, product_id: product.id] }
+      let(:purchase_id) { purchase.id }
+
+      it 'is expected to return the purchase' do
+        expect(by_id).to eql(purchase)
+      end
+    end
+
+    context 'when purchase not found' do
+      let(:purchase_id) { 0 }
+
+      it { expect(by_id).to be_nil }
+    end
+  end
+
   describe '#active' do
     subject(:active) { purchase_repo.active }
 
