@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-require 'commands/vending_machine/select_product'
+require 'commands/select_product'
 
-RSpec.describe Commands::VendingMachine::SelectProduct do
+RSpec.describe Commands::SelectProduct do
   subject(:call) { described_class.call(product_name: product_name) }
 
   let(:logger) { instance_spy(Logger) }
