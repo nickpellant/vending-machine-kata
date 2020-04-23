@@ -6,6 +6,10 @@ module Repos
   class PurchaseRepo < ApplicationRepo[:purchases]
     commands(:create, update: :by_pk)
 
+    def by_id(id)
+      purchases.by_pk(id).one
+    end
+
     def count
       purchases.count
     end

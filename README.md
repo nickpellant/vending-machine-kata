@@ -14,19 +14,10 @@ postgres=# CREATE DATABASE vending_machine_kata_test;
 
 Database URLs are configured in `.env.development` and `.env.test`.
 
-Run `rake db:seeds` to add acceptable coin denominations to database.
-
 ## Usage
 
-Interact with the vending machine via commands in `lib/commands`. An example sequence might be:
+Interact with the vending machine via commands in `lib/commands`. There are a few examples in the `examples` directory to get you started.
 
 ```ruby
-App['commands.stock_product'].call(name: 'Coca-cola', price: 0.5.to_d, quantity_to_stock: 10)
-App['commands.load_coin'].call(denomination: '10p', quantity_to_load: 10)
-
-App['commands.insert_coin'].call(denomination: '20p')
-App['commands.insert_coin'].call(denomination: '20p')
-App['commands.insert_coin'].call(denomination: '10p')
-
-App['commands.select_product'].call(product_name: 'Coca-cola')
+bundle exec ruby examples/basic.rb
 ```

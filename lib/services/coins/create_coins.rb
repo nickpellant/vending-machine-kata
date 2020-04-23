@@ -12,7 +12,7 @@ module Services
       ]
 
       option :denomination, Dry::Types['strict.string']
-      option :coin_state, Dry::Types['strict.string'], default: proc { 'received' }
+      option :coin_state, Dry::Types['strict.string'], default: proc { 'processed' }
       option :quantity_to_load, Dry::Types['strict.integer']
 
       def call

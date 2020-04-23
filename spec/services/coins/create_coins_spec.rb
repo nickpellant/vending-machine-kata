@@ -14,7 +14,7 @@ RSpec.describe Services::Coins::CreateCoins do
   let(:denomination) { '1p' }
   let(:quantity_to_load) { 2 }
 
-  let(:unvalidated_params) { { denomination: denomination, state: 'received' } }
+  let(:unvalidated_params) { { denomination: denomination, state: 'processed' } }
   let(:validated_params) { unvalidated_params }
 
   let(:create_coin_contract) { instance_spy(Contracts::Coins::CreateCoinContract) }
@@ -30,7 +30,7 @@ RSpec.describe Services::Coins::CreateCoins do
   end
 
   context 'when coin data is valid' do
-    let(:coin) { Factory.structs[:coin, :received, denomination: denomination] }
+    let(:coin) { Factory.structs[:coin, :processed, denomination: denomination] }
 
     before do
       allow(validation_result).to receive(:success?).and_return(true)

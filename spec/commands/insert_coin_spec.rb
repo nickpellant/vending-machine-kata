@@ -13,7 +13,7 @@ RSpec.describe Commands::InsertCoin do
   context 'when denomination accepted' do
     let!(:denomination) { '1p' }
 
-    let(:log_coin_accepted_message) { 'Coin accepted' }
+    let(:log_coin_accepted_message) { '1p coin accepted' }
 
     it 'inserts the coin into the machine' do
       expect { call }.to(
@@ -31,7 +31,7 @@ RSpec.describe Commands::InsertCoin do
   context 'when denomination not accepted' do
     let(:denomination) { '£5' }
 
-    let(:log_coin_not_accepted) { 'Coin is not accepted' }
+    let(:log_coin_not_accepted) { '£5 coin is not accepted' }
 
     it 'logs that the coin was not accepted' do
       call

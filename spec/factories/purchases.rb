@@ -11,4 +11,8 @@ Factory.define(:purchase) do |f|
   f.trait(:cancelled) do |t|
     t.state { 'cancelled' }
   end
+
+  f.trait(:complete) do |t|
+    t.state { 'complete' }
+  end
 end
