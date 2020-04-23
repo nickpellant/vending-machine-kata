@@ -27,7 +27,7 @@ module Services
       private
 
       def unvalidated_params
-        { coin_id: coin.id }
+        { coin_id: coin.id, state: 'processing' }
       end
 
       def validate
