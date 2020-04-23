@@ -4,7 +4,6 @@ require_relative '../application_contract'
 
 module Contracts
   module Products
-    # Contract to validate product data for updating an existing products stock
     class UpdateProductStockContract < ApplicationContract
       schema do
         required(:quantity_in_stock).filled(:integer)

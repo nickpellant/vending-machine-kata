@@ -4,7 +4,6 @@ require 'services/application_service'
 
 module Services
   module Purchases
-    # Find or create active purchase in database
     class FindOrCreateActivePurchase < ApplicationService
       include Import['repos.purchase_repo']
 

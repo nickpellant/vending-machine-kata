@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Services
-  # Root application service to inherit from
   class ApplicationService
     extend Dry::Initializer
 

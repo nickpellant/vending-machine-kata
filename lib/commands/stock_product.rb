@@ -4,7 +4,6 @@ require 'commands/application_command'
 require 'entities/product'
 
 module Commands
-  # Stocks a product in the vending machine
   class StockProduct < ApplicationCommand
     include Import[
       'logger',

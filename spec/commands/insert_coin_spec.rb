@@ -10,16 +10,14 @@ RSpec.describe Commands::InsertCoin do
   let(:logger) { instance_spy(Logger) }
   before { App.stub('logger', logger) }
 
-  context 'when coin found' do
-    let!(:coin) { Factory[:coin, :one_pence] }
-
-    let(:denomination) { coin.denomination }
+  context 'when denomination accepted' do
+    let!(:denomination) { '1p' }
 
     let(:log_coin_accepted_message) { 'Coin accepted' }
 
     it 'inserts the coin into the machine' do
       expect { call }.to(
-        change { App['repos.coin_insertion_repo'].count_by_coin(coin) }.from(0).to(1)
+        change { App['repos.coin_repo'].count_by_denomination(denomination) }.from(0).to(1)
       )
     end
 
@@ -30,7 +28,7 @@ RSpec.describe Commands::InsertCoin do
     end
   end
 
-  context 'when coin not found' do
+  context 'when denomination not accepted' do
     let(:denomination) { '£5' }
 
     let(:log_coin_not_accepted) { 'Coin is not accepted' }

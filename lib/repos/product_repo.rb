@@ -3,7 +3,6 @@
 require_relative 'application_repo'
 
 module Repos
-  # Convenience interface for product relations
   class ProductRepo < ApplicationRepo[:products]
     commands(:create, update: :by_pk)
 

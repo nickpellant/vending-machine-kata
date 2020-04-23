@@ -5,7 +5,6 @@ require 'services/application_service'
 
 module Services
   module Products
-    # Validate changed data and updates existing product's quantity in stock
     class UpdateProductStock < ApplicationService
       include Import[
         'contracts.products.update_product_stock_contract',

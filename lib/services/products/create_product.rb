@@ -4,7 +4,6 @@ require_relative '../application_service'
 
 module Services
   module Products
-    # Validate product data and persist product to database
     class CreateProduct < ApplicationService
       include Import[
         'contracts.products.create_product_contract',
