@@ -2,11 +2,11 @@
 
 module Persistence
   module Relations
-    # Products database interface
-    class Products < ROM::Relation[:sql]
-      schema(:products, infer: true) do
+    # Purchases database interface
+    class Purchases < ROM::Relation[:sql]
+      schema(:purchases, infer: true) do
         associations do
-          has_many :purchases
+          belongs_to :product
         end
       end
 
