@@ -35,9 +35,9 @@ RSpec.describe Commands::SelectProduct do
     end
   end
 
-  context 'when product found and an active purchase exists' do
-    let!(:new_product_to_purchase) { Factory[:product] }
-    let!(:existing_product_to_purchase) { Factory[:product] }
+  context 'when product in stock and an active purchase exists' do
+    let!(:new_product_to_purchase) { Factory[:product, quantity_in_stock: 1] }
+    let!(:existing_product_to_purchase) { Factory[:product, quantity_in_stock: 1] }
     let!(:purchase) { Factory[:purchase, :active, product_id: existing_product_to_purchase.id] }
 
     let(:product_name) { new_product_to_purchase.name }
@@ -60,6 +60,25 @@ RSpec.describe Commands::SelectProduct do
       call
 
       expect(logger).to have_received(:info).with(log_product_selected_message)
+    end
+  end
+
+  context 'when product found but is out of stock' do
+    let!(:product) { Factory[:product, quantity_in_stock: 0] }
+    let(:product_name) { product.name }
+
+    let(:log_product_out_of_stock_message) { 'Product out of stock' }
+
+    it 'does not creates a purchase' do
+      expect { call }.not_to(
+        change { App['repos.purchase_repo'].count }.from(0)
+      )
+    end
+
+    it 'logs that the product is out of stock' do
+      call
+
+      expect(logger).to have_received(:info).with(log_product_out_of_stock_message)
     end
   end
 end
