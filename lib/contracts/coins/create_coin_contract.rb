@@ -7,8 +7,13 @@ module Contracts
   module Coins
     class CreateCoinContract < ApplicationContract
       schema do
-        required(:denomination).filled(:string).value(included_in?: Entities::Coin::DENOMINATIONS)
-        required(:state).filled(:string).value(included_in?: Entities::Coin::STATES)
+        required(:denomination)
+          .filled(:string)
+          .value(included_in?: Entities::Coin::DENOMINATIONS.keys)
+
+        required(:state)
+          .filled(:string)
+          .value(included_in?: Entities::Coin::STATES)
       end
     end
   end

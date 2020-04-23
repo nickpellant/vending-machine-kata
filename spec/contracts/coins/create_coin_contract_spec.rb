@@ -14,7 +14,7 @@ RSpec.describe Contracts::Coins::CreateCoinContract do
   describe '#errors[:denomination]' do
     it_behaves_like 'a required string from list schema value' do
       let(:value_key) { :denomination }
-      let(:valid_values) { Entities::Coin::DENOMINATIONS }
+      let(:valid_values) { Entities::Coin::DENOMINATIONS.keys }
     end
   end
   describe '#errors[:state]' do
