@@ -6,7 +6,6 @@ require 'services/application_service'
 
 module Services
   module Purchases
-    # Validate change of product to purchase and persists to database
     class UpdatePurchaseProduct < ApplicationService
       include Import[
         'contracts.purchases.update_purchase_product_contract',

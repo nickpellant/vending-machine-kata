@@ -3,7 +3,6 @@
 require 'entities'
 
 module Repos
-  # Root application repo to inherit from
   class ApplicationRepo < ROM::Repository::Root
     struct_namespace(Entities)
 

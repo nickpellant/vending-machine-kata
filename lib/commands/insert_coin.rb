@@ -4,41 +4,34 @@ require 'commands/application_command'
 require 'entities/coin'
 
 module Commands
-  # Insert a coin in the vending machine to contribute toward a purchase
   class InsertCoin < ApplicationCommand
     option :denomination, Dry::Types['strict.string']
 
     include Import[
       'logger',
       'repos.coin_repo',
-      'services.coin_insertions.create_coin_insertion'
+      'services.coins.create_coin'
     ]
 
     def call
-      @coin = find_coin
+      result = create_coin
 
-      if coin
-        create_coin_insertion
-      else
+      case result
+      when Entities::Coin
+        log_coin_accepted
+      when Dry::Validation::Result
         log_coin_not_accepted
       end
     end
 
     private
 
-    attr_reader :coin
-
     def find_coin
       coin_repo.by_denomination(denomination)
     end
 
-    def create_coin_insertion
-      result = super.call(coin: coin)
-
-      case result
-      when Entities::CoinInsertion
-        log_coin_accepted
-      end
+    def create_coin
+      super.call(denomination: denomination)
     end
 
     def log_coin_accepted

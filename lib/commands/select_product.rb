@@ -4,7 +4,6 @@ require 'commands/application_command'
 require 'entities/purchase'
 
 module Commands
-  # Select a product from the vending machine to purchase
   class SelectProduct < ApplicationCommand
     include Import[
       'logger',

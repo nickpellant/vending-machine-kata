@@ -4,7 +4,6 @@ require_relative '../application_contract'
 
 module Contracts
   module Products
-    # Contract to validate product data prior to entity creation
     class CreateProductContract < ApplicationContract
       schema do
         required(:name).filled(:string)
