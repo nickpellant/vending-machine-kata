@@ -14,7 +14,7 @@ module Entities
       '£1' => 1.to_d,
       '£2' => 2.to_d
     }.freeze
-    STATES = %w[processing returned received].freeze
+    STATES = %w[processing dispensed processed].freeze
 
     def value
       @value ||= DENOMINATIONS[denomination]

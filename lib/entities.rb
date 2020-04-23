@@ -1,4 +1,5 @@
 # frozen_string_literal: true
 
-module Entities
-end
+require 'entities/purchase'
+require 'entities/product'
+require 'entities/coin'

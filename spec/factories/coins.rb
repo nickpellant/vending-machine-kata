@@ -12,15 +12,23 @@ Factory.define(:coin) do |f|
     t.denomination { '2p' }
   end
 
+  f.trait(:ten_pence) do |t|
+    t.denomination { '10p' }
+  end
+
+  f.trait(:twenty_pence) do |t|
+    t.denomination { '20p' }
+  end
+
   f.trait(:processing) do |t|
     t.state { 'processing' }
   end
 
-  f.trait(:returned) do |t|
-    t.state { 'returned' }
+  f.trait(:dispensed) do |t|
+    t.state { 'dispensed' }
   end
 
-  f.trait(:received) do |t|
-    t.state { 'received' }
+  f.trait(:processed) do |t|
+    t.state { 'processed' }
   end
 end
