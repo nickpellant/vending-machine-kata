@@ -19,3 +19,7 @@ Run `rake db:seeds` to add acceptable coin denominations to database.
 ## Usage
 
 Interact with the vending machine via commands in `lib/commands`. There are a few examples in the `examples` directory to get you started.
+
+```ruby
+bundle exec ruby examples/basic.rb
+```

@@ -35,11 +35,11 @@ module Commands
     end
 
     def log_coin_accepted
-      logger.info('Coin accepted')
+      logger.info("#{denomination} coin accepted")
     end
 
     def log_coin_not_accepted
-      logger.error('Coin is not accepted')
+      logger.error("#{denomination} coin is not accepted")
     end
   end
 end
