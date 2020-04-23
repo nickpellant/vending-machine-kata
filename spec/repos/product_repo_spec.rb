@@ -16,6 +16,25 @@ RSpec.describe Repos::ProductRepo do
     end
   end
 
+  describe '#by_name' do
+    subject(:by_name) { product_repo.by_name(name) }
+
+    context 'when product found' do
+      let(:product) { Factory[:product] }
+      let(:name) { product.name }
+
+      it 'is expected to return the product' do
+        expect(by_name).to eql(product)
+      end
+    end
+
+    context 'when product not found' do
+      let(:name) { 'Name' }
+
+      it { expect(by_name).to be_nil }
+    end
+  end
+
   describe '#by_params' do
     subject(:by_params) { product_repo.by_params(params) }
 
