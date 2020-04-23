@@ -14,8 +14,6 @@ postgres=# CREATE DATABASE vending_machine_kata_test;
 
 Database URLs are configured in `.env.development` and `.env.test`.
 
-Run `rake db:seeds` to add acceptable coin denominations to database.
-
 ## Usage
 
 Interact with the vending machine via commands in `lib/commands`. There are a few examples in the `examples` directory to get you started.
