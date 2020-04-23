@@ -16,9 +16,11 @@ module Commands
     def call
       @product = find_product
 
-      if product
+      if product&.quantity_in_stock&.positive?
         @purchase = find_or_create_active_purchase
         update_purchase_product
+      elsif product&.quantity_in_stock&.zero?
+        log_product_out_of_stock
       else
         log_product_not_found
       end
@@ -47,6 +49,10 @@ module Commands
 
     def log_product_selected
       logger.info('Product selected for purchase')
+    end
+
+    def log_product_out_of_stock
+      logger.info('Product out of stock')
     end
 
     def log_product_not_found
