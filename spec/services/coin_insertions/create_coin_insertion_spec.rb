@@ -10,7 +10,7 @@ RSpec.describe Services::CoinInsertions::CreateCoinInsertion do
   subject(:call) { described_class.call(coin: coin) }
 
   let(:coin) { Factory.structs[:coin, :one_pence] }
-  let(:unvalidated_params) { { coin_id: coin.id } }
+  let(:unvalidated_params) { { coin_id: coin.id, state: 'processing' } }
   let(:validated_params) { unvalidated_params }
 
   let(:create_coin_insertion_contract) do
