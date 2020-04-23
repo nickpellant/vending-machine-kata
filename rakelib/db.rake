@@ -10,4 +10,9 @@ namespace :db do
 
     ROM::SQL::RakeSupport.env = App['database']
   end
+
+  desc 'Seed database'
+  task seed: :environment do
+    require Pathname.new(Dir.pwd).join('db/seeds.rb')
+  end
 end
