@@ -12,7 +12,7 @@ Factory.define(:coin_insertion) do |f|
     t.state { 'returned' }
   end
 
-  f.trait(:recieved) do |t|
-    t.state { 'recieved' }
+  f.trait(:received) do |t|
+    t.state { 'received' }
   end
 end
