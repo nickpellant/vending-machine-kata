@@ -11,6 +11,10 @@ module Repos
       products.to_a
     end
 
+    def by_name(name)
+      products.where(name: name).one
+    end
+
     def by_params(params)
       products.where(params).one
     end
