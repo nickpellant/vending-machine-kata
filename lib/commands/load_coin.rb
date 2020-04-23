@@ -9,17 +9,17 @@ module Commands
     include Import[
       'logger',
       'repos.coin_repo',
-      'services.coins.update_coin_quantity_in_machine'
+      'services.coin_insertions.create_coin_insertions'
     ]
 
     option :denomination, Dry::Types['strict.string']
-    option :quantity_to_load, Dry::Types['strict.integer']
+    option :quantity_to_load, Dry::Types['strict.integer'].constrained(gt: 0)
 
     def call
       @coin = find_coin
 
       if coin
-        update_coin_quantity_in_machine
+        create_coin_insertions
       else
         log_coin_not_found
       end
@@ -33,30 +33,27 @@ module Commands
       coin_repo.by_denomination(denomination)
     end
 
-    def update_coin_quantity_in_machine
+    def create_coin_insertions
       result = super.call(coin: coin, quantity_to_load: quantity_to_load)
 
       case result
-      when Entities::Coin
-        log_coin_quantity_in_machine_updated(result.quantity_in_machine)
+      when Entities::CoinInsertion
+        log_coins_loaded
       when Dry::Validation::Result
-        log_coin_updating_quantity_in_machine_failed_validation
+        log_coins_rejected
       end
     end
 
-    def log_coin_quantity_in_machine_updated(new_quantity_in_machine)
-      logger.info(
-        "'#{denomination}' quantity in machine changed from #{coin.quantity_in_machine} to "\
-        "#{new_quantity_in_machine}"
-      )
+    def log_coins_loaded
+      logger.info("#{quantity_to_load} #{denomination} coins loaded")
     end
 
-    def log_coin_updating_quantity_in_machine_failed_validation
-      logger.error("Attempting to load '#{denomination}' coins led to a validation error")
+    def log_coins_rejected
+      logger.error('Coins rejected')
     end
 
     def log_coin_not_found
-      logger.error("'#{denomination}' coin not found")
+      logger.error("#{denomination} coin is not accepted")
     end
   end
 end
