@@ -54,6 +54,13 @@ postgres=# CREATE DATABASE vending_machine_kata_test;
 
 Database URLs are configured in `.env.development` and `.env.test`.
 
+After creating the databases, make sure to migrate them:
+
+```
+$ bundle exec rake db:migrate
+$ APP_ENV=test bundle exec rake db:migrate
+```
+
 ## Usage
 
 Interact with the vending machine via commands in `lib/commands`. There are a few examples in the `examples` directory to get you started.
