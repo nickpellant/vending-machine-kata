@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-require 'commands/vending_machine/load_coin'
+require 'commands/load_coin'
 
-RSpec.describe Commands::VendingMachine::LoadCoin do
+RSpec.describe Commands::LoadCoin do
   subject(:call) do
     described_class.call(denomination: denomination, quantity_to_load: quantity_to_load)
   end

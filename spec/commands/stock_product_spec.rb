@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-require 'commands/vending_machine/stock_product'
+require 'commands/stock_product'
 
-RSpec.describe Commands::VendingMachine::StockProduct do
+RSpec.describe Commands::StockProduct do
   subject(:call) do
     described_class.call(name: name, price: price, quantity_to_stock: quantity_to_stock)
   end

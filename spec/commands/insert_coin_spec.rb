@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-require 'commands/vending_machine/insert_coin'
+require 'commands/insert_coin'
 
-RSpec.describe Commands::VendingMachine::InsertCoin do
+RSpec.describe Commands::InsertCoin do
   subject(:call) { described_class.call(denomination: denomination) }
 
   let(:logger) { instance_spy(Logger) }
