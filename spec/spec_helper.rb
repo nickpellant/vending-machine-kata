@@ -7,6 +7,7 @@ require_relative '../run'
 require_relative 'support/app_stubs'
 require_relative 'support/database_cleaner'
 require_relative 'support/factory'
+require_relative 'support/simplecov'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
