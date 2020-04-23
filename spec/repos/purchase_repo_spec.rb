@@ -17,4 +17,19 @@ RSpec.describe Repos::PurchaseRepo do
       expect(active).to eql(active_purchase)
     end
   end
+
+  describe '#count' do
+    subject(:count) { purchase_repo.count }
+
+    context 'when purchases exist' do
+      let(:product) { Factory[:product] }
+      let!(:coins) { [Factory[:purchase, :active, product_id: product.id]] }
+
+      it { is_expected.to be(1) }
+    end
+
+    context 'when no purchases exist' do
+      it { is_expected.to be(0) }
+    end
+  end
 end
